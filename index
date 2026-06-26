@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ar Ruwad | Private Online Tutoring</title>
+  <meta name="description" content="Ar Ruwad connects students with private online tutors who placed in the top 10% of HSC performers across NSW." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f6eadf;
+      --soft-cream: #fff8f1;
+      --warm-cream: #f1ddce;
+      --sand: #e7d0c1;
+      --rose: #c9a59a;
+      --taupe: #8d6f62;
+      --burgundy: #5a262d;
+      --burgundy-dark: #331316;
+      --dark: #2b1b18;
+      --ink: #4a3a35;
+      --gold: #b9925b;
+      --white: #ffffff;
+      --shadow: 0 22px 70px rgba(43, 27, 24, 0.14);
+      --soft-shadow: 0 14px 35px rgba(43, 27, 24, 0.09);
+      --ring: 0 0 0 4px rgba(185, 146, 91, 0.18);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --font-body: "Inter Tight", "Segoe UI", Arial, sans-serif;
+      --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at top left, rgba(201, 165, 154, 0.26), transparent 34rem),
+        linear-gradient(180deg, var(--soft-cream), #fffaf4 42%, var(--cream));
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -3;
+      opacity: 0.32;
+      background-image:
+        linear-gradient(rgba(90, 38, 45, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 38, 45, 0.045) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--burgundy);
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(1140px, 92%); margin: 0 auto; }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--burgundy));
+      z-index: 999;
+      box-shadow: 0 0 14px rgba(185, 146, 91, 0.4);
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 240px; height: 240px;
+      border-radius: 999px;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(185, 146, 91, 0.15), transparent 68%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    /* ---------- Header / Nav ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(120deg, #2f1115 0%, #4a1b22 52%, #5a262d 100%);
+      border-bottom: 1px solid rgba(255, 248, 241, 0.10);
+      transition: box-shadow 0.3s ease, padding 0.3s ease;
+    }
+
+    header.is-scrolled {
+      box-shadow: 0 10px 30px rgba(43, 27, 24, 0.28);
+      border-bottom-color: rgba(185, 146, 91, 0.28);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--soft-cream);
+    }
+
+    .brand-mark {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex: 0 0 44px;
+      display: grid;
+      place-items: center;
+      background: var(--soft-cream);
+      box-shadow: 0 0 0 1px rgba(185, 146, 91, 0.5), 0 6px 16px rgba(0,0,0,0.3);
+    }
+
+    .brand-mark img, .card-logo img {
+      display: none;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.18);
+    }
+
+    .monogram {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--burgundy);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-size: 1.05rem;
+    }
+    .monogram.big { font-size: 1.5rem; }
+
+    .brand-text { display: flex; flex-direction: column; line-height: 1; }
+
+    .brand-text .name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.28rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-text .tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(231, 208, 193, 0.72);
+      margin-top: 5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    nav a.nav-link {
+      position: relative;
+      display: inline-flex;
+      padding: 9px 14px;
+      border-radius: 10px;
+      color: rgba(246, 234, 223, 0.82);
+      transition: color 0.2s ease;
+    }
+
+    nav a.nav-link::after {
+      content: "";
+      position: absolute;
+      left: 14px; right: 14px;
+      bottom: 4px;
+      height: 1.5px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    nav a.nav-link:hover { color: var(--white); }
+    nav a.nav-link:hover::after { transform: scaleX(1); }
+
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+
+    .menu-toggle {
+      display: none;
+      width: 42px; height: 42px;
+      border: 1px solid rgba(255, 248, 241, 0.24);
+      border-radius: 11px;
+      background: rgba(255, 248, 241, 0.07);
+      color: var(--soft-cream);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 17px; height: 1.8px;
+      margin: 4px auto;
+      border-radius: 99px;
+      background: currentColor;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    body.menu-open .menu-toggle span:nth-child(1) { transform: translateY(5.8px) rotate(45deg); }
+    body.menu-open .menu-toggle span:nth-child(2) { opacity: 0; }
+    body.menu-open .menu-toggle span:nth-child(3) { transform: translateY(-5.8px) rotate(-45deg); }
+
+    /* ---------- Buttons ---------- */
+    .button, .nav-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 22px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .button {
+      background: var(--burgundy);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(90, 38, 45, 0.22);
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(90, 38, 45, 0.28); background: #6a2c34; }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--burgundy);
+      border: 1px solid rgba(90, 38, 45, 0.22);
+      box-shadow: none;
+    }
+    .button.secondary:hover { background: var(--white); transform: translateY(-2px); box-shadow: var(--soft-shadow); }
+
+    .nav-button {
+      background: linear-gradient(135deg, var(--gold), #a87f49);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(185, 146, 91, 0.32);
+      padding: 11px 20px;
+    }
+    .nav-button:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(185, 146, 91, 0.42); }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; padding: 92px 0 80px; overflow: hidden; }
+
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      z-index: -2;
+      animation: floatBlob 11s ease-in-out infinite alternate;
+    }
+    .hero::before {
+      width: 420px; height: 420px;
+      right: -160px; top: -110px;
+      background: radial-gradient(circle, rgba(201, 165, 154, 0.45), transparent 68%);
+    }
+    .hero::after {
+      width: 340px; height: 340px;
+      left: -150px; bottom: -150px;
+      background: radial-gradient(circle, rgba(185, 146, 91, 0.18), transparent 70%);
+      animation-delay: -3s;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      padding: 8px 15px;
+      border: 1px solid rgba(90, 38, 45, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--burgundy);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(185, 146, 91, 0.15);
+      animation: pulse 1.9s ease-in-out infinite;
+    }
+
+    h1 {
+      max-width: 13ch;
+      font-size: clamp(2.7rem, 5.6vw, 4.7rem);
+      line-height: 1.02;
+      font-weight: 500;
+      margin-bottom: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .accent {
+      font-style: italic;
+      font-weight: 500;
+      background: linear-gradient(110deg, var(--burgundy) 0%, #8f5660 28%, var(--gold) 50%, #8f5660 72%, var(--burgundy) 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: textShine 6s ease-in-out infinite;
+    }
+
+    @keyframes textShine {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+    }
+
+    .hero p.lead {
+      max-width: 50ch;
+      font-size: 1.12rem;
+      color: var(--ink);
+      margin-bottom: 30px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-bottom: 30px; }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+      color: var(--taupe);
+      font-size: 0.9rem;
+    }
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(90, 38, 45, 0.09);
+      font-weight: 500;
+    }
+    .trust-pill span { color: var(--burgundy); font-weight: 700; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 540px;
+    }
+    .stat {
+      position: relative;
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(90, 38, 45, 0.1);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+    .stat:hover { transform: translateY(-4px); background: rgba(255,255,255,0.82); box-shadow: var(--soft-shadow); }
+    .stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--burgundy);
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+    .stat strong .unit {
+      font-size: 0.6em;
+      font-style: normal;
+      vertical-align: baseline;
+      margin-left: 1px;
+    }
+    .stat span { font-size: 0.82rem; color: var(--taupe); }
+
+    /* ---------- Hero card (overlap fixed: tags now sit inside card flow) ---------- */
+    .hero-card-wrap { position: relative; perspective: 1000px; }
+
+    .hero-card {
+      position: relative;
+      padding: 26px 26px 28px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.74);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(90, 38, 45, 0.12);
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -1.5px;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: linear-gradient(140deg, rgba(185,146,91,0.5), transparent 40%, rgba(90,38,45,0.28));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: -1;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(90, 38, 45, 0.1);
+    }
+    .card-logo {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex: 0 0 62px;
+      display: grid;
+      place-items: center;
+      background: var(--soft-cream);
+      box-shadow: 0 8px 20px rgba(43,27,24,0.14);
+      animation: gentleFloat 5s ease-in-out infinite;
+    }
+    .card-logo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+    .card-top-text { display: flex; flex-direction: column; gap: 4px; }
+    .card-top-text .k {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .card-top-text .v {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--burgundy);
+      font-size: 1.18rem;
+    }
+
+    .card-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--cream);
+      border: 1px solid rgba(90, 38, 45, 0.08);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--burgundy);
+    }
+
+    .lesson-card { padding: 18px; border-radius: 18px; background: var(--cream); }
+    .lesson-card h3 { font-size: 1.28rem; margin-bottom: 8px; font-weight: 600; }
+    .lesson-card p { color: var(--ink); font-size: 0.96rem; }
+
+    .mini-list { list-style: none; margin-top: 14px; display: grid; gap: 9px; }
+    .mini-list li { display: flex; gap: 10px; align-items: center; font-size: 0.94rem; }
+    .tick {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--burgundy);
+      color: white;
+      font-size: 0.7rem;
+      flex: 0 0 22px;
+    }
+
+    .enquiry-note {
+      margin-top: 16px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--soft-cream);
+      border: 1px solid rgba(90, 38, 45, 0.1);
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+    }
+    .enquiry-note .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 6px;
+      flex: 0 0 9px;
+      box-shadow: 0 0 0 4px rgba(185,146,91,0.16);
+    }
+    .enquiry-note strong { color: var(--burgundy); font-size: 0.9rem; font-weight: 700; }
+    .enquiry-note p { font-size: 0.84rem; color: var(--taupe); margin-top: 2px; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 84px 0; position: relative; }
+
+    .section-heading { text-align: center; max-width: 680px; margin: 0 auto 46px; }
+    .section-heading .eyebrow { margin-bottom: 16px; }
+    .section-heading h2 {
+      font-size: clamp(2rem, 4.2vw, 3.3rem);
+      line-height: 1.06;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .section-heading p { color: var(--ink); font-size: 1.04rem; }
+
+    .achievement-panel {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      max-width: 920px;
+      margin: 0 auto 46px;
+      padding: 30px 34px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(185, 146, 91, 0.16), transparent 18rem),
+        rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(90, 38, 45, 0.12);
+      box-shadow: var(--soft-shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .achievement-panel::after {
+      content: "";
+      position: absolute;
+      inset: -90px -80px auto auto;
+      width: 200px; height: 200px;
+      border-radius: 999px;
+      background: rgba(90, 38, 45, 0.06);
+    }
+    .achievement-number { position: relative; z-index: 1; min-width: 160px; text-align: center; }
+    .achievement-number strong {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--burgundy);
+      font-size: clamp(3rem, 6.5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+    .achievement-number span {
+      display: block;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-top: 8px;
+    }
+    .achievement-copy { position: relative; z-index: 1; }
+    .achievement-copy h3 { font-size: 1.5rem; margin-bottom: 8px; font-weight: 600; }
+    .achievement-copy p { color: var(--ink); }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .feature, .step, .subject-card, .testimonial {
+      position: relative;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(90, 38, 45, 0.1);
+      box-shadow: 0 8px 24px rgba(43, 27, 24, 0.06);
+      overflow: hidden;
+      transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease, background 0.26s ease;
+    }
+    .feature::after, .step::after, .subject-card::after, .testimonial::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -60px auto;
+      width: 130px; height: 130px;
+      border-radius: 999px;
+      background: rgba(185, 146, 91, 0.09);
+      transition: transform 0.26s ease, opacity 0.26s ease;
+    }
+    .feature:hover, .step:hover, .subject-card:hover, .testimonial:hover {
+      transform: translateY(-7px);
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(185, 146, 91, 0.3);
+      box-shadow: 0 22px 42px rgba(43, 27, 24, 0.11);
+    }
+    .feature:hover::after, .step:hover::after, .subject-card:hover::after, .testimonial:hover::after {
+      transform: scale(1.15) translate(-8px, -8px);
+    }
+
+    .icon {
+      width: 52px; height: 52px;
+      border-radius: 15px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--cream), var(--white));
+      color: var(--burgundy);
+      font-size: 1.45rem;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 22px rgba(43, 27, 24, 0.06);
+    }
+
+    .feature h3, .step h3, .subject-card h3, .testimonial h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+    }
+    .feature p, .step p, .subject-card p, .testimonial p { position: relative; z-index: 2; color: var(--ink); }
+
+    .how-it-works {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.6), transparent 25rem),
+        linear-gradient(135deg, var(--cream), #f5e3d7);
+      overflow: hidden;
+    }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
+    .step { min-height: 220px; }
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: inline-block;
+      margin-bottom: 16px;
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .timeline {
+      margin-top: 48px;
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(90, 38, 45, 0.09);
+      box-shadow: 0 12px 30px rgba(43, 27, 24, 0.06);
+    }
+    .timeline-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+    .timeline-item {
+      padding: 17px;
+      border-radius: 16px;
+      background: var(--soft-cream);
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+      font-size: 0.92rem;
+    }
+    .timeline-item strong { display: block; color: var(--burgundy); margin-bottom: 5px; font-weight: 700; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -50%;
+      width: 45%; height: 100%;
+      transform: skewX(-18deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+      animation: shimmer 4.6s ease-in-out infinite;
+    }
+
+    .subjects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+    .subject-card { padding: 24px; }
+    .subject-card h3 { display: flex; align-items: center; gap: 10px; font-size: 1.15rem; }
+    .subject-card h3 span {
+      display: inline-flex;
+      width: 34px; height: 34px;
+      border-radius: 11px;
+      align-items: center; justify-content: center;
+      background: var(--cream);
+      font-size: 0.95rem;
+      flex: 0 0 34px;
+    }
+    .subject-card p { font-size: 0.92rem; }
+
+    .testimonials { background: linear-gradient(180deg, transparent, rgba(246, 234, 223, 0.7)); }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testimonial p { font-style: italic; }
+    .person { display: flex; align-items: center; gap: 12px; margin-top: 20px; color: var(--taupe); font-size: 0.9rem; }
+    .avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--burgundy), var(--gold));
+      display: inline-flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700;
+      font-family: var(--font-display);
+    }
+
+    .cta { padding-top: 0; }
+    .cta-card {
+      background:
+        radial-gradient(circle at 84% 22%, rgba(255, 255, 255, 0.12), transparent 14rem),
+        linear-gradient(135deg, var(--burgundy), #321417);
+      color: white;
+      padding: 52px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 28px;
+      overflow: hidden;
+      position: relative;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 25px 60px rgba(90, 38, 45, 0.22);
+    }
+    .cta-card::before {
+      content: "";
+      position: absolute;
+      inset: -100px auto auto -90px;
+      width: 220px; height: 220px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      animation: drift 9s ease-in-out infinite;
+    }
+    .cta-card h2 { color: #fff; font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1.05; margin-bottom: 12px; font-weight: 500; }
+    .cta-card p { color: rgba(255, 255, 255, 0.82); max-width: 50ch; }
+    .cta-card .button { background: var(--gold); color: #fff; position: relative; z-index: 2; }
+    .cta-card .button:hover { background: #c79c63; }
+
+    .contact {
+      background:
+        radial-gradient(circle at 15% 25%, rgba(185, 146, 91, 0.14), transparent 20rem),
+        var(--cream);
+    }
+    .form-shell { max-width: 800px; margin: 0 auto; position: relative; }
+    form {
+      position: relative;
+      padding: 32px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(90, 38, 45, 0.1);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { display: block; font-weight: 600; color: var(--burgundy); margin-bottom: 7px; font-size: 0.92rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid rgba(90, 38, 45, 0.16);
+      border-radius: 13px;
+      background: rgba(255, 248, 241, 0.75);
+      font: inherit;
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    input:hover, select:hover, textarea:hover { background: var(--soft-cream); }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: var(--ring); background: white; }
+    textarea { min-height: 130px; resize: vertical; }
+    .full { grid-column: 1 / -1; }
+    form .button { margin-top: 18px; width: 100%; }
+
+    footer {
+      padding: 34px 0;
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.78);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+    footer strong { color: white; font-family: var(--font-display); font-weight: 600; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal:nth-child(2) { transition-delay: 0.06s; }
+    .reveal:nth-child(3) { transition-delay: 0.12s; }
+    .reveal:nth-child(4) { transition-delay: 0.18s; }
+
+    @keyframes floatBlob { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(-30px,24px,0) scale(1.05); } }
+    @keyframes drift { 0%,100% { transform: translate3d(0,0,0) rotate(0deg); } 50% { transform: translate3d(16px,-22px,0) rotate(8deg); } }
+    @keyframes gentleFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes pulse { 0%,100% { transform: scale(1); box-shadow: 0 0 0 5px rgba(185,146,91,0.15); } 50% { transform: scale(1.12); box-shadow: 0 0 0 9px rgba(185,146,91,0.05); } }
+    @keyframes shimmer { 0%,55% { left: -60%; } 100% { left: 130%; } }
+
+    @media (max-width: 980px) {
+      nav ul {
+        position: fixed;
+        top: 76px; left: 4%; right: 4%;
+        display: grid; gap: 4px;
+        padding: 16px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(47,17,21,0.98), rgba(90,38,45,0.98));
+        border: 1px solid rgba(255, 248, 241, 0.14);
+        box-shadow: var(--shadow);
+        opacity: 0; pointer-events: none;
+        transform: translateY(-12px) scale(0.98);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      body.menu-open nav ul { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+      nav a.nav-link { width: 100%; padding: 12px 14px; }
+      nav a.nav-link::after { display: none; }
+      .menu-toggle { display: inline-block; }
+      .hero-grid, .cta-card { grid-template-columns: 1fr; }
+      .hero-card-wrap { max-width: 540px; margin: 8px auto 0; }
+      .achievement-panel { flex-direction: column; align-items: flex-start; text-align: left; }
+      .achievement-number { text-align: left; }
+      .features, .steps, .testimonial-grid { grid-template-columns: 1fr; }
+      .subjects-grid, .timeline-track { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 620px) {
+      .brand-text .tag { display: none; }
+      .nav-button { display: none; }
+      .hero { padding: 58px 0 60px; }
+      .stats, .subjects-grid, .form-grid, .timeline-track { grid-template-columns: 1fr; }
+      .hero-actions .button { width: 100%; }
+      form { padding: 22px; }
+      .cta-card { padding: 34px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body id="top">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Ar Ruwad homepage">
+        <span class="brand-mark"><span class="monogram">AR</span><img id="logo-nav" alt="Ar Ruwad logo" hidden /></span>
+        <span class="brand-text">
+          <span class="name">Ar Ruwad</span>
+          <span class="tag">Tutoring Excellence</span>
+        </span>
+      </a>
+
+      <div class="nav-right">
+        <nav aria-label="Main navigation">
+          <ul id="main-menu">
+            <li><a class="nav-link" href="#about">About</a></li>
+            <li><a class="nav-link" href="#how">How it works</a></li>
+            <li><a class="nav-link" href="#subjects">Subjects</a></li>
+            <li><a class="nav-link" href="#stories">Stories</a></li>
+            <li><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a class="nav-button" href="#contact">Find a tutor</a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="main-menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Private online tutoring</span>
+          <h1>Find the right tutor for your <span class="accent">next academic step.</span></h1>
+          <p class="lead">
+            Ar Ruwad connects students with tutors who placed in the top 10% of HSC performers across NSW — for confidence, revision, and exam preparation that actually moves the needle.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#contact">Start an enquiry <span>→</span></a>
+            <a class="button secondary" href="#how">See how it works</a>
+          </div>
+
+          <div class="trust-row" aria-label="Key benefits">
+            <div class="trust-pill"><span>✓</span>Top 10% HSC performers</div>
+            <div class="trust-pill"><span>✓</span>Online lessons</div>
+            <div class="trust-pill"><span>✓</span>Personalised support</div>
+            <div class="trust-pill"><span>✓</span>Subject-based matching</div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong><span data-count="3">0</span></strong>
+              <span>Easy steps to begin</span>
+            </div>
+            <div class="stat">
+              <strong><span data-count="100">0</span><i class="unit">%</i></strong>
+              <span>Online and flexible</span>
+            </div>
+            <div class="stat">
+              <strong><span data-count="10">0</span><i class="unit">+</i></strong>
+              <span>HSC subjects offered</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card-wrap reveal">
+          <aside class="hero-card tilt-card" aria-label="Tutor matching summary">
+            <div class="card-top">
+              <span class="card-logo"><span class="monogram big">AR</span><img id="logo-card" alt="Ar Ruwad logo" hidden /></span>
+              <span class="card-top-text">
+                <span class="k">Your match starts here</span>
+                <span class="v">Tutor matching</span>
+              </span>
+            </div>
+
+            <div class="card-chips">
+              <span class="chip">🏅 Top 10% HSC performers</span>
+              <span class="chip">📅 Flexible sessions</span>
+            </div>
+
+            <div class="lesson-card">
+              <h3>Tell us what you need</h3>
+              <p>Share the subject, year level, goals, and preferred times, and we’ll help connect you with a suitable private tutor.</p>
+              <ul class="mini-list">
+                <li><span class="tick">✓</span>Subject-based tutor matching</li>
+                <li><span class="tick">✓</span>Online lessons from anywhere</li>
+                <li><span class="tick">✓</span>Support for school confidence</li>
+              </ul>
+            </div>
+
+            <div class="enquiry-note">
+              <span class="dot"></span>
+              <span>
+                <strong>New enquiry</strong>
+                <p>Year 11 student needs Biology support after school.</p>
+              </span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">About Ar Ruwad</span>
+          <h2>A calmer way to find academic support.</h2>
+          <p>
+            Whether a student needs to catch up, prepare for exams, or aim higher, Ar Ruwad connects them with tutors who placed in the top 10% of HSC performers in NSW and understand how to guide students through HSC-style learning.
+          </p>
+        </div>
+
+        <div class="achievement-panel reveal" aria-label="Tutor achievement highlight">
+          <div class="achievement-number">
+            <strong>Top 10%</strong>
+            <span>HSC · NSW</span>
+          </div>
+          <div class="achievement-copy">
+            <h3>Learn from the state’s top HSC performers.</h3>
+            <p>Our tutors placed in the top 10% of HSC results across NSW, bringing strong subject knowledge, exam strategy, and first-hand study experience into every lesson.</p>
+          </div>
+        </div>
+
+        <div class="features">
+          <article class="feature reveal">
+            <div class="icon">📚</div>
+            <h3>Personalised learning</h3>
+            <p>Support shaped around each student’s subject, year level, pace, learning style, and goals.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="icon">💻</div>
+            <h3>Online convenience</h3>
+            <p>Lessons run from home, making tutoring easier to fit around school, family, and activities.</p>
+          </article>
+          <article class="feature reveal">
+            <div class="icon">🏅</div>
+            <h3>High-achieving tutors</h3>
+            <p>Students are matched with tutors who ranked among the top 10% of HSC performers in the state.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="how-it-works">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">The process</span>
+          <h2>How it works</h2>
+          <p>A simple process designed to make private tutoring feel clear, supportive, and stress-free.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step reveal">
+            <h3>Share your needs</h3>
+            <p>Tell us the subject you need help with, your year level, goals, and preferred lesson times.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Get matched</h3>
+            <p>We connect students with a private tutor who suits their learning needs and availability.</p>
+          </article>
+          <article class="step reveal">
+            <h3>Start learning</h3>
+            <p>Begin online lessons, ask questions freely, and build confidence one session at a time.</p>
+          </article>
+        </div>
+
+        <div class="timeline reveal" aria-label="Tutoring journey timeline">
+          <div class="timeline-track">
+            <div class="timeline-item"><strong>1. Enquiry</strong>Send subject and availability.</div>
+            <div class="timeline-item"><strong>2. Match</strong>We review the best tutor fit.</div>
+            <div class="timeline-item"><strong>3. Confirm</strong>Choose times and lesson goals.</div>
+            <div class="timeline-item"><strong>4. Learn</strong>Start online tutoring with support.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subjects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">What we cover</span>
+          <h2>HSC subjects we offer</h2>
+          <p>Focused online tutoring across English, maths, science, and humanities subjects.</p>
+        </div>
+
+        <div class="subjects-grid">
+          <article class="subject-card reveal"><h3><span>✎</span>English Standard</h3><p>Essay writing, textual analysis, creative writing, and exam confidence.</p></article>
+          <article class="subject-card reveal"><h3><span>📖</span>English Advanced</h3><p>High-level analysis, thesis development, module work, and essay refinement.</p></article>
+          <article class="subject-card reveal"><h3><span>∑</span>Math Standard</h3><p>Skills practice, worked examples, exam technique, and topic-by-topic support.</p></article>
+          <article class="subject-card reveal"><h3><span>📊</span>Math Advanced</h3><p>Algebra, calculus, functions, exam questions, and confidence-building practice.</p></article>
+          <article class="subject-card reveal"><h3><span>⚗</span>Chemistry</h3><p>Concept support, calculations, practical skills, and exam preparation.</p></article>
+          <article class="subject-card reveal"><h3><span>⚛</span>Physics</h3><p>Problem-solving, formulas, depth studies, and HSC-style questions.</p></article>
+          <article class="subject-card reveal"><h3><span>🧬</span>Biology</h3><p>Content revision, diagrams, investigations, and extended responses.</p></article>
+          <article class="subject-card reveal"><h3><span>☪</span>Studies of Religion</h3><p>Essay structure, terminology, short answers, and source analysis.</p></article>
+          <article class="subject-card reveal"><h3><span>💼</span>Business Studies</h3><p>Case studies, operations, marketing, finance, HR, and exam responses.</p></article>
+          <article class="subject-card reveal"><h3><span>🌏</span>Society &amp; Culture</h3><p>Concepts, research skills, PIP planning, and written responses.</p></article>
+          <article class="subject-card reveal"><h3><span>🏠</span>CAFS</h3><p>Community and Family Studies content, case studies, and extended responses.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stories" class="testimonials">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Stories</span>
+          <h2>Built around confidence.</h2>
+          <p>Use this section for real testimonials later. For now, these sample cards show the kind of trust-building content your homepage can hold.</p>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial reveal">
+            <h3>For students</h3>
+            <p>“I finally understood the topic because the lesson moved at my pace.”</p>
+            <div class="person"><span class="avatar">S</span><span>Sample student feedback</span></div>
+          </article>
+          <article class="testimonial reveal">
+            <h3>For parents</h3>
+            <p>“The process made it easier to find support without feeling overwhelmed.”</p>
+            <div class="person"><span class="avatar">P</span><span>Sample parent feedback</span></div>
+          </article>
+          <article class="testimonial reveal">
+            <h3>For tutors</h3>
+            <p>“It connects me with students looking for exactly my subject area.”</p>
+            <div class="person"><span class="avatar">T</span><span>Sample tutor feedback</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div>
+            <h2>Ready to find the right tutor?</h2>
+            <p>Send through your details and we’ll help you take the first step towards more confident learning.</p>
+          </div>
+          <a class="button" href="#contact">Enquire now</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Get in touch</span>
+          <h2>Make an enquiry</h2>
+          <p>Tell us the subject, year level, and type of support needed, and we’ll help connect you with a suitable online tutor.</p>
+        </div>
+
+        <div class="form-shell reveal">
+          <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+            <div class="form-grid">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div>
+                <label for="role">I am a</label>
+                <select id="role" name="role" required>
+                  <option value="">Please select</option>
+                  <option>Student</option>
+                  <option>Parent/Guardian</option>
+                  <option>Private Tutor</option>
+                </select>
+              </div>
+              <div>
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject">
+                  <option value="">Please select a subject</option>
+                  <option>English Standard</option>
+                  <option>English Advanced</option>
+                  <option>Math Standard</option>
+                  <option>Math Advanced</option>
+                  <option>Chemistry</option>
+                  <option>Physics</option>
+                  <option>Biology</option>
+                  <option>Studies of Religion</option>
+                  <option>Business Studies</option>
+                  <option>Society &amp; Culture (SAC)</option>
+                  <option>CAFS</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us what support you’re looking for..."></textarea>
+              </div>
+            </div>
+            <button class="button" type="submit">Send enquiry <span>→</span></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Ar Ruwad</strong> — Private online tutoring connections</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Logo: paste your base64 into LOGO_SRC to replace the AR monogram everywhere.
+       Until then, a clean "AR" monogram shows in both the nav and the hero card. */
+    const LOGO_SRC = "__LOGO_B64__";
+    if (LOGO_SRC && !LOGO_SRC.startsWith("__")) {
+      const src = LOGO_SRC.startsWith("data:") ? LOGO_SRC : "data:image/jpeg;base64," + LOGO_SRC;
+      ["logo-nav", "logo-card"].forEach(id => {
+        const img = document.getElementById(id);
+        img.src = src;
+        img.style.display = "block";
+        const mono = img.parentElement.querySelector(".monogram");
+        if (mono) mono.style.display = "none";
+      });
+    }
+
+    const body = document.body;
+    const header = document.querySelector('header');
+    const progress = document.querySelector('.scroll-progress');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuLinks = document.querySelectorAll('nav a');
+    const glow = document.querySelector('.cursor-glow');
+
+    function updateScrollEffects() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+      header.classList.toggle('is-scrolled', scrollTop > 10);
+    }
+    updateScrollEffects();
+    window.addEventListener('scroll', updateScrollEffects, { passive: true });
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = body.classList.toggle('menu-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+    menuLinks.forEach(link => link.addEventListener('click', () => {
+      body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open menu');
+    }));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count);
+        const duration = 1300, start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.8 });
+    document.querySelectorAll('[data-count]').forEach(c => counterObserver.observe(c));
+
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', event => {
+        const rect = card.getBoundingClientRect();
+        const rotateY = (((event.clientX - rect.left) / rect.width) - 0.5) * 6;
+        const rotateX = -(((event.clientY - rect.top) / rect.height) - 0.5) * 6;
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = 'rotateX(0) rotateY(0) translateY(0)'; });
+    });
+
+    window.addEventListener('pointermove', event => {
+      if (window.matchMedia('(pointer: fine)').matches) {
+        glow.style.opacity = '1';
+        glow.style.left = event.clientX + 'px';
+        glow.style.top = event.clientY + 'px';
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
