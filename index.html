@@ -25,6 +25,8 @@
       --radius-xl: 36px;
       --radius-lg: 26px;
       --radius-md: 18px;
+      --font-main: Aptos, Inter, "Segoe UI", Arial, sans-serif;
+      --font-display: "Aptos Display", Montserrat, "Segoe UI", Arial, sans-serif;
     }
 
     * {
@@ -39,7 +41,7 @@
 
     body {
       min-height: 100vh;
-      font-family: Georgia, 'Times New Roman', serif;
+      font-family: var(--font-main);
       background:
         radial-gradient(circle at top left, rgba(201, 165, 154, 0.30), transparent 34rem),
         linear-gradient(180deg, var(--soft-cream), #fffaf4 42%, var(--cream));
@@ -65,6 +67,14 @@
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand span {
+      font-family: var(--font-display);
+      letter-spacing: -0.035em;
     }
 
     img {
@@ -104,15 +114,16 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(246, 234, 223, 0.78);
+      background: linear-gradient(135deg, #331316 0%, #4b1b22 48%, #6d2a33 100%);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(90, 38, 45, 0.11);
+      border-bottom: 1px solid rgba(255, 248, 241, 0.16);
+      box-shadow: 0 14px 40px rgba(43, 27, 24, 0.18);
       transition: box-shadow 0.25s ease, background 0.25s ease;
     }
 
     header.is-scrolled {
-      background: rgba(255, 248, 241, 0.9);
-      box-shadow: 0 10px 30px rgba(43, 27, 24, 0.08);
+      background: linear-gradient(135deg, rgba(51, 19, 22, 0.97), rgba(90, 38, 45, 0.97));
+      box-shadow: 0 16px 38px rgba(43, 27, 24, 0.26);
     }
 
     .nav {
@@ -127,9 +138,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--burgundy);
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      color: var(--soft-cream);
     }
 
     .brand img {
@@ -137,9 +148,10 @@
       height: 68px;
       border-radius: 18px;
       object-fit: contain;
-      background: #f6eadf;
-      padding: 4px;
-      box-shadow: 0 12px 28px rgba(43, 27, 24, 0.14);
+      background: linear-gradient(145deg, #fff8f1, #f1ddce);
+      padding: 5px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.26);
+      border: 1px solid rgba(255, 248, 241, 0.42);
       transition: transform 0.35s ease;
     }
 
@@ -156,9 +168,9 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       font-size: 0.95rem;
-      color: var(--dark);
+      color: rgba(255, 248, 241, 0.9);
     }
 
     nav a {
@@ -170,8 +182,8 @@
     }
 
     nav a:hover {
-      color: var(--burgundy);
-      background: rgba(90, 38, 45, 0.07);
+      color: var(--white);
+      background: rgba(255, 248, 241, 0.14);
       transform: translateY(-1px);
     }
 
@@ -185,10 +197,10 @@
       display: none;
       width: 44px;
       height: 44px;
-      border: 1px solid rgba(90, 38, 45, 0.17);
+      border: 1px solid rgba(255, 248, 241, 0.28);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.55);
-      color: var(--burgundy);
+      background: rgba(255, 248, 241, 0.10);
+      color: var(--soft-cream);
       cursor: pointer;
     }
 
@@ -226,7 +238,7 @@
       padding: 13px 23px;
       background: linear-gradient(135deg, var(--burgundy), var(--burgundy-dark));
       color: var(--white);
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       font-weight: 800;
       cursor: pointer;
       overflow: hidden;
@@ -254,6 +266,12 @@
     .nav-button:hover::after,
     .button:hover::after {
       transform: translateX(115%);
+    }
+
+    .nav-button {
+      background: linear-gradient(135deg, var(--soft-cream), var(--sand));
+      color: var(--burgundy-dark);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
     }
 
     .button.secondary {
@@ -351,7 +369,7 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.52);
       color: var(--burgundy);
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       font-size: 0.8rem;
       font-weight: 800;
       letter-spacing: 0.08em;
@@ -389,7 +407,7 @@
 
     .hero p {
       max-width: 640px;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       font-size: 1.13rem;
       color: #5f4d48;
       margin-bottom: 30px;
@@ -407,7 +425,7 @@
       flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 24px;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: var(--taupe);
       font-size: 0.92rem;
     }
@@ -473,7 +491,7 @@
 
     .stat span {
       position: relative;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: var(--taupe);
       font-size: 0.88rem;
     }
@@ -551,7 +569,7 @@
     .cta-card p,
     .testimonial p,
     .mini-message p {
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: #66524c;
     }
 
@@ -560,7 +578,7 @@
       margin-top: 16px;
       display: grid;
       gap: 10px;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
     }
 
     .mini-list li {
@@ -593,7 +611,7 @@
       background: rgba(255, 255, 255, 0.84);
       border: 1px solid rgba(90, 38, 45, 0.11);
       box-shadow: 0 15px 34px rgba(43, 27, 24, 0.11);
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       font-size: 0.88rem;
       color: var(--burgundy);
       font-weight: 800;
@@ -656,7 +674,7 @@
     }
 
     .section-heading p {
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: #66524c;
       font-size: 1.05rem;
     }
@@ -707,7 +725,7 @@
 
     .achievement-number span {
       display: block;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       font-weight: 800;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -727,7 +745,7 @@
     }
 
     .achievement-copy p {
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: #66524c;
     }
 
@@ -902,7 +920,7 @@
       padding: 18px;
       border-radius: 23px;
       background: var(--soft-cream);
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: #66524c;
       position: relative;
       overflow: hidden;
@@ -945,7 +963,7 @@
       align-items: center;
       gap: 12px;
       margin-top: 20px;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: var(--taupe);
     }
 
@@ -1061,7 +1079,7 @@
 
     label {
       display: block;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       font-weight: 800;
       color: var(--burgundy);
       margin-bottom: 7px;
@@ -1076,7 +1094,7 @@
       border-radius: 17px;
       background: rgba(255, 248, 241, 0.78);
       font: inherit;
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       color: var(--dark);
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
@@ -1115,7 +1133,7 @@
       padding: 34px 0;
       background: var(--dark);
       color: rgba(255, 255, 255, 0.82);
-      font-family: Arial, sans-serif;
+      font-family: var(--font-main);
       text-align: center;
     }
 
@@ -1196,8 +1214,8 @@
         gap: 4px;
         padding: 18px;
         border-radius: 26px;
-        background: rgba(255, 248, 241, 0.96);
-        border: 1px solid rgba(90, 38, 45, 0.12);
+        background: linear-gradient(135deg, rgba(51, 19, 22, 0.98), rgba(90, 38, 45, 0.98));
+        border: 1px solid rgba(255, 248, 241, 0.18);
         box-shadow: var(--shadow);
         opacity: 0;
         pointer-events: none;
@@ -1516,10 +1534,26 @@
       <div class="container">
         <div class="section-heading reveal">
           <h2>HSC subjects we offer</h2>
-          <p>Ar Ruwad offers focused online tutoring across science, English, maths, religion, and HSIE subjects.</p>
+          <p>Ar Ruwad offers focused online tutoring across English, maths, science, and humanities subjects.</p>
         </div>
 
         <div class="subjects-grid">
+          <article class="subject-card reveal">
+            <h3><span>✎</span>English Standard</h3>
+            <p>Essay writing, textual analysis, creative writing, and exam confidence.</p>
+          </article>
+          <article class="subject-card reveal">
+            <h3><span>📖</span>English Advanced</h3>
+            <p>High-level analysis, thesis development, module work, and essay refinement.</p>
+          </article>
+          <article class="subject-card reveal">
+            <h3><span>∑</span>Math Standard</h3>
+            <p>Skills practice, worked examples, exam technique, and topic-by-topic support.</p>
+          </article>
+          <article class="subject-card reveal">
+            <h3><span>📊</span>Math Advanced</h3>
+            <p>Algebra, calculus, functions, exam questions, and confidence-building practice.</p>
+          </article>
           <article class="subject-card reveal">
             <h3><span>⚗</span>Chemistry</h3>
             <p>Concept support, calculations, practical skills, and exam preparation.</p>
@@ -1537,20 +1571,8 @@
             <p>SOR essay structure, terminology, short answers, and source analysis.</p>
           </article>
           <article class="subject-card reveal">
-            <h3><span>✎</span>English Standard</h3>
-            <p>Essay writing, textual analysis, creative writing, and exam confidence.</p>
-          </article>
-          <article class="subject-card reveal">
-            <h3><span>📖</span>English Advanced</h3>
-            <p>High-level analysis, thesis development, module work, and essay refinement.</p>
-          </article>
-          <article class="subject-card reveal">
-            <h3><span>∑</span>Math Standard</h3>
-            <p>Skills practice, worked examples, exam technique, and topic-by-topic support.</p>
-          </article>
-          <article class="subject-card reveal">
-            <h3><span>📊</span>Math Advanced</h3>
-            <p>Algebra, calculus, functions, exam questions, and confidence-building practice.</p>
+            <h3><span>💼</span>Business Studies</h3>
+            <p>Case studies, operations, marketing, finance, human resources, and exam responses.</p>
           </article>
           <article class="subject-card reveal">
             <h3><span>🌏</span>Society & Culture</h3>
@@ -1639,14 +1661,15 @@
                 <label for="subject">Subject</label>
                 <select id="subject" name="subject">
                   <option value="">Please select a subject</option>
-                  <option>Chemistry</option>
-                  <option>Physics</option>
-                  <option>Biology</option>
-                  <option>Studies of Religion</option>
                   <option>English Standard</option>
                   <option>English Advanced</option>
                   <option>Math Standard</option>
                   <option>Math Advanced</option>
+                  <option>Chemistry</option>
+                  <option>Physics</option>
+                  <option>Biology</option>
+                  <option>Studies of Religion</option>
+                  <option>Business Studies</option>
                   <option>Society & Culture (SAC)</option>
                   <option>CAFS</option>
                   <option>Other</option>
@@ -1763,4 +1786,3 @@
   </script>
 </body>
 </html>
-
