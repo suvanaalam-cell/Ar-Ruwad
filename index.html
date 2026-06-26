@@ -336,7 +336,18 @@
     .accent {
       font-style: italic;
       font-weight: 500;
-      color: var(--gold);
+      background: linear-gradient(110deg, var(--burgundy) 0%, #8f5660 28%, var(--gold) 50%, #8f5660 72%, var(--burgundy) 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: textShine 6s ease-in-out infinite;
+    }
+
+    @keyframes textShine {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
     }
 
     .hero p.lead {
